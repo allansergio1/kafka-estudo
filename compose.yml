@@ -1,13 +1,29 @@
 services:
   api1:
-    build: ./api1
+#    build: ./api1 # Usar apenas na master
+    # Se você não estiver na master, use a imagem do Docker Hub
+    image: maven:3.9.9-amazoncorretto-21
+    volumes:
+      - ./api1:/app
+    restart: always
+    working_dir: /app
+    command: mvn spring-boot:run
+    # Configuração padrão em qualquer ambiente
     ports:
       - "3001:8080"  # host:container
     networks:
       - kafka-estudo
 
   api2:
-    build: ./api2
+#    build: ./api2 # Usar apenas na master
+    # Se você não estiver na master, use a imagem do Docker Hub
+    image: maven:3.9.9-amazoncorretto-21
+    volumes:
+      - ./api2:/app
+    restart: always
+    working_dir: /app
+    command: mvn spring-boot:run
+    # Configuração padrão em qualquer ambiente
     ports:
       - "3002:8080"
     networks:
