@@ -1,4 +1,4 @@
-package br.com.api2;
+package br.com.api1.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/teste")
 @Slf4j
-public class TesteResource {
+public class TesteController {
 
     @GetMapping
-    public ResponseEntity<String> getTesteApi2() {
-        log.info("Endpoint /teste da API 2 foi chamado");
-        return ResponseEntity.ok("Endpoint funcionando na API 2");
+    public ResponseEntity<String> getTesteApi1() {
+        log.info("Endpoint /teste da API 1 foi chamado");
+        return ResponseEntity.ok("Endpoint funcionando na API 1");
     }
 }

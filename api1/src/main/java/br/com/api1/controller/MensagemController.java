@@ -1,4 +1,4 @@
-package br.com.api1.resources;
+package br.com.api1.controller;
 
 import br.com.api1.domain.Mensagem;
 import br.com.api1.domain.MensagemService;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/mensagem")
-public class MensagemResource {
+public class MensagemController {
 
     private final MensagemService mensagemService;
 
-    public MensagemResource(MensagemService mensagemService) {
+    public MensagemController(MensagemService mensagemService) {
         this.mensagemService = mensagemService;
     }
 
