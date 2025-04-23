@@ -1,4 +1,4 @@
-package br.com.api1;
+package br.com.api1.resources;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
