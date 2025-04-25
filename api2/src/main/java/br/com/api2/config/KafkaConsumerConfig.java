@@ -24,10 +24,9 @@ public class KafkaConsumerConfig {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = kafkaProperties.buildConsumerProperties();
-        // Adicionalmente, se quiser garantir:
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "mensagem-request-1"); // você pode extrair isso do application.yml também
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "mensagem-request-1");
         return new DefaultKafkaConsumerFactory<>(props);
     }
 

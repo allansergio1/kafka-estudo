@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Mensagem {
 
-    private Long id;
     private String descricao;
     private String status;
 }
