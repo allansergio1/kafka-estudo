@@ -16,6 +16,16 @@ services:
     networks:
       - kafka-estudo
 
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: always
+
   api1:
 #    build: ./api1 # Usar apenas na master
     # Se você não estiver na master, use a imagem do Docker Hub
@@ -48,3 +58,6 @@ services:
 
 networks:
   kafka-estudo:
+
+volumes:
+    portainer_data:
