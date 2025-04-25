@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ public class MensagemProducer {
     private String topico;
     private ObjectMapper objectMapper;
     private KafkaTemplate<String, String> kafkaTemplate;
+    private int contador = 0;
 
     public MensagemProducer(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
         this.kafkaTemplate = kafkaTemplate;
@@ -26,6 +28,15 @@ public class MensagemProducer {
         kafkaTemplate.send(topico, orderAsMessage);
         log.info("Mensagem enviada para o tópico {}: {}", topico, orderAsMessage);
         return "Mensagem enviada";
+    }
+
+    @Scheduled(fixedRate = 5000)
+    public void sendMessage() throws JsonProcessingException {
+        Mensagem mensagem = new Mensagem("Mensagem " + contador, "ENVIADA");
+        String orderAsMessage = objectMapper.writeValueAsString(mensagem);
+        kafkaTemplate.send(topico, orderAsMessage);
+        log.info("Mensagem enviada para o tópico {}: {}", topico, orderAsMessage);
+        contador++;
     }
 }
 
